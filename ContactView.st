@@ -13,6 +13,7 @@ Seaside.WAComponent subclass: ContactView [
   ]
   
   renderContentOn: html [
+    | group |
     html form: [
       html text: 'Name: '.
       html textInput on: #name of: self contact.
@@ -22,14 +23,15 @@ Seaside.WAComponent subclass: ContactView [
       html break.
       
       html text: 'Gender: '.
-      html select
-        size: 2;
-        list: #(#Male #Female);
-        selected: self contact gender;
-        callback: [ :value |
-          value = #Male
-            ifTrue: [ self contact beMale ]
-            ifFalse: [ self contact beFemale ] ].
+      group := html radioGroup.
+      group radioButton
+        selected: self contact isMale;
+        callback: [ self contact beMale ].
+      html text: 'Male'.
+      group radioButton
+        selected: self contact isFemale;
+        callback: [ self contact beFemale ].
+      html text: 'Female'.
       html break.
       
       html submitButton on: #save of: self.
