@@ -52,7 +52,12 @@ Seaside.WAComponent subclass: ContactListView [
   ]
   
   renderContact: aContact on: html [
-    html render: aContact name; render: ' '; render: aContact emailAddress
+    html text: aContact name, ' ', aContact emailAddress.
+    html text: ' ('.
+    html anchor
+      callback: [ self removeContact: aContact ];
+      with: 'remove'.
+    html text: ')'.
   ]
 ]
 
@@ -63,6 +68,10 @@ ContactListView extend [
     email := self request: 'Email Address'.
     contact := Contact name: name emailAddress: email.
     Contact addContact: contact.
+  ]
+  
+  removeContact: aContact [
+    Contact removeContact: aContact.
   ]
 ]
 
