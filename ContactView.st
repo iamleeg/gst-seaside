@@ -15,18 +15,12 @@ Seaside.WAComponent subclass: ContactView [
   renderContentOn: html [
     html form: [
       html text: 'Name: '.
-      html textInput
-        callback: [ :value | self contact name: value ];
-        value: self contact name.
+      html textInput on: #name of: self contact.
       html break.
       html text: 'Email address: '.
-      html textInput
-        callback: [ :value | self contact emailAddress: value ];
-        value: self contact emailAddress.
+      html textInput on: #emailAddress of: self contact.
       html break.
-      html submitButton
-        callback: [ self save ];
-        value:'Save'.
+      html submitButton on: #save of: self.
     ]
   ]
   
