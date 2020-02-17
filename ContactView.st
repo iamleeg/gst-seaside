@@ -34,13 +34,17 @@ Seaside.WAComponent subclass: ContactView [
       html text: 'Female'.
       html break.
       
+      html text: 'Send email updates: '.
+      html checkbox on: #requestsEmailUpdates of: self contact.
+      html break.
+      
       html submitButton on: #save of: self.
     ]
   ]
   
   save [
     "For now, let's just display the information."
-    self inform: self contact name, '--', self contact emailAddress, '--', self contact gender.
+    self inform: self contact name, '--', self contact emailAddress, '--', self contact gender, '--', self contact requestsEmailUpdates printString.
   ]
 ]
 

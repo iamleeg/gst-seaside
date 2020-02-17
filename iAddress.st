@@ -1,6 +1,6 @@
 Object subclass: Contact [
   <category: 'iAddress'>
-  | name emailAddress gender |
+  | name emailAddress gender requestsEmailUpdates |
   Database := nil.
   
   emailAddress [ ^ emailAddress ]
@@ -13,6 +13,11 @@ Object subclass: Contact [
   isFemale [ ^ self gender = #Female ]
   beMale [ gender := #Male ]
   beFemale [ gender := #Female ]
+  
+  requestsEmailUpdates [ ^ requestsEmailUpdates ifNil: [ requestsEmailUpdates := false ] ]
+  requestsEmailUpdates: aBoolean [
+    requestsEmailUpdates := aBoolean
+  ]
   
   Contact class >> name: nameString emailAddress: emailString [
     ^ self new
