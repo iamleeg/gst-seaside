@@ -20,13 +20,25 @@ Seaside.WAComponent subclass: ContactView [
       html text: 'Email address: '.
       html textInput on: #emailAddress of: self contact.
       html break.
+      
+      html text: 'Gender: '.
+      html select
+        size: 2;
+        list: #(#Male #Female);
+        selected: self contact gender;
+        callback: [ :value |
+          value = #Male
+            ifTrue: [ self contact beMale ]
+            ifFalse: [ self contact beFemale ] ].
+      html break.
+      
       html submitButton on: #save of: self.
     ]
   ]
   
   save [
     "For now, let's just display the information."
-    self inform: self contact name, '--', self contact emailAddress.
+    self inform: self contact name, '--', self contact emailAddress, '--', self contact gender.
   ]
 ]
 
