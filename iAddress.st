@@ -1,6 +1,6 @@
 Object subclass: Contact [
   <category: 'iAddress'>
-  | name emailAddress gender requestsEmailUpdates |
+  | name emailAddress gender requestsEmailUpdates birthdate |
   Database := nil.
   
   emailAddress [ ^ emailAddress ]
@@ -8,7 +8,8 @@ Object subclass: Contact [
   name [ ^ name ]
   name: aString [ name := aString ]
   gender [ ^ gender ifNil: [ gender := #Male ] ]
-  
+  birthdate [ ^ birthdate ]
+  birthdate: aDate [ birthdate := aDate ]
   isMale [ ^ self gender = #Male ]
   isFemale [ ^ self gender = #Female ]
   beMale [ gender := #Male ]
