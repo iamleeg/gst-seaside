@@ -71,6 +71,10 @@ Seaside.WAComponent subclass: ContactListView [
       with: aContact emailAddress.
     html text: ' ('.
     html anchor
+      callback: [ self editContact: aContact ];
+      with: 'edit'.
+    html space.
+    html anchor
       callback: [ self removeContact: aContact ];
       with: 'remove'.
     html text: ')'.
@@ -89,6 +93,12 @@ ContactListView extend [
   removeContact: aContact [
     (self confirm: 'Are you sure that you want to remove this contact?')
       ifTrue: [Contact removeContact: aContact]
+  ]
+  
+  editContact: aContact [
+    self call: (ContactView new
+      contact: aContact;
+      yourself)
   ]
 ]
 
